@@ -1,2 +1,2 @@
 # Nyx
-A simple realtime GLSL Raytracer
+A simple realtime GLSL raytracer
