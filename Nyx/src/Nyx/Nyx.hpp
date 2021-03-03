@@ -15,20 +15,17 @@
 
 #include "Window/Input.hpp"
 
+#include "RenderContext.hpp"
+
 namespace Nyx {
 
-	[[nodiscard]] std::shared_ptr<Renderer> init() {
-
-#ifdef NYX_DEBUG
+	void init() {
+#ifdef NYX_ENABLE_ASSERTS
 		static bool first = true;
-
-		if (!first)
-			NYX_CORE_DEBUGBREAK("You can't call Nyx::init() multiple times!");
-
-		first = false;
+		NYX_ASSERT(first, "You can't call Nyx::init() multiple times!");
 #endif
 
 		Nyx::Logger::init();
-		return std::make_shared<Renderer>();
+		NYX_INTERNAL_DISPLAY_DEBUGBREAK_WARNING
 	}
 }

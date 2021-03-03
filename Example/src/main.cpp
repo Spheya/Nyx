@@ -1,12 +1,13 @@
 #include <Nyx/Nyx.hpp>
 
 int main() {
-	auto renderer = Nyx::init();
+	Nyx::init();
+	auto context = std::make_shared<Nyx::RenderContext>("Nyx Demo", 640, 480);
 
-	auto window = std::make_shared<Nyx::Window>("Nyx Demo", 640, 480);
-	window->makeCurrentContext();
+	auto renderer = std::make_shared<Nyx::Renderer>();
 
-	while (true) {
-		window->update();
+	while (!context->getWindow().isCloseRequested()) {
+		renderer->render();
+		context->getWindow().update();
 	}
 }

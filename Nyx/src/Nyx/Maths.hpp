@@ -23,15 +23,6 @@ namespace Nyx {
     constexpr float RADIANS_TO_DEGREES = 180.0f / PI;
 }
 
-namespace std {
-    template<>
-    struct hash <glm::ivec3> {
-        std::size_t operator()(const glm::ivec3& v) const {
-            return (v.x ^ (v.y << 8) ^ (v.z << 16)) * 31;
-        }
-    };
-}
-
 // GLM Data Types
 template<typename OStream>
 OStream& operator<<(OStream& os, const glm::vec2& v) {

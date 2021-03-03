@@ -1,4 +1,5 @@
 #include "nyx_pch.hpp"
+#include "Nyx/Core/Base.hpp"
 #include "Window.hpp"
 
 namespace Nyx {
@@ -36,6 +37,12 @@ namespace Nyx {
 
 		// Prepare input for the next frame
 		m_input->update(m_deltaTime);
+
+		// Display the fps
+		std::ostringstream ss;
+		ss.precision(2);
+		ss << m_data->title << " - FPS: " << (int) (1.0f / m_deltaTime) << " (" << m_deltaTime * 1000.0f << "ms" << ")";
+		glfwSetWindowTitle(m_window, ss.str().c_str());
 	}
 
 	void Window::clear(bool colour, bool depth, bool stencil) {
@@ -44,7 +51,6 @@ namespace Nyx {
 
 	void Window::makeCurrentContext() {
 		glfwMakeContextCurrent(m_window);
-		enableVsync();
 		NYX_CORE_INFO("OpenGL context bound");
 	}
 
